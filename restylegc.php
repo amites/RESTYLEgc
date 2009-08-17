@@ -46,6 +46,7 @@
  *                      MooTools are not compatible
  *   03 July     2009 - Fixed bug to remove width style from bubble
  *   05 July     2009 - Rebranded to RESTYLEgc
+ *   16 August   2009 - Updated regex in restylegc-js.php
  *                      
  *   
  * ACKNOWLEDGMENTS:
