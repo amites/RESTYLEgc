@@ -37,7 +37,7 @@ $buffer = curl_exec($ch);
 curl_close($ch);
 
 // Fix URLs in the javascript
-$pattern = '/this\.[a-zA-Z]{2}\+"calendar/';
+$pattern = '/this\.[a-zA-Z]{1,2}\+"calendar/';
 $replacement = '"http://www.google.com/calendar';
 $buffer = preg_replace($pattern, $replacement, $buffer);
 
