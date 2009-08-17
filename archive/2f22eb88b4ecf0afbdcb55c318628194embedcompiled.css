@@ -1,8 +1,4 @@
 /* Copyright 2009 Google Inc. All Rights Reserved. */
-body {
-    background:#fff;
-}
-
 html>body .goog-inline-block {
 	display:-moz-inline-box;
 	display:inline-block;
@@ -558,7 +554,6 @@ html>body .goog-inline-block {
 	left:0;
 	top:0;
 	font-size:9pt;
-    width:400px;
 }
 
 .bubble-table {
