@@ -26,7 +26,7 @@ if(count($_GET) > 0) {
  *
  * Edit and uncomment the following line to freeze the calendar version.
  */
-//$url = "http://myserver.tld/path/to/archive/2f22eb88b4ecf0afbdcb55c318628194embedcompiled__en.js";
+//$url = "http://myserver.tld/path/to/archive/371be1f592b0b5f982952f457d82fd40embedcompiled__en.js";
 
 // Request the javascript
 $ch = curl_init();

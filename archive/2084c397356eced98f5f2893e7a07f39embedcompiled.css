@@ -1,8 +1,4 @@
 /* Copyright 2009 Google Inc. All Rights Reserved. */
-body {
-    background:#fff;
-}
-
 html>body .goog-inline-block {
 	display:-moz-inline-box;
 	display:inline-block;
@@ -27,7 +23,6 @@ html>body .goog-inline-block {
 	line-height:1px;
 	margin:0 2px;
 	overflow:hidden;
-	display:block;
 }
 
 .t2 {
@@ -36,7 +31,6 @@ html>body .goog-inline-block {
 	line-height:1px;
 	margin:0 1px;
 	overflow:hidden;
-	display:block;
 }
 
 .calendar-list input {
@@ -152,7 +146,7 @@ html>body .goog-inline-block {
 	width:9px;
 	height:7px;
 	line-height:7px;
-	background-image:url(//calendar.google.com/googlecalendar/images/combined_v12.gif);
+	background-image:url(//calendar.google.com/googlecalendar/images/combined_v9.gif);
 }
 
 .ff2 .cic {
@@ -334,7 +328,7 @@ html>body .goog-inline-block {
 	cursor:pointer;
 	width:14px;
 	height:13px;
-	background:url(//calendar.google.com/googlecalendar/images/combined_v12.gif) 0 -50px;
+	background:url(//calendar.google.com/googlecalendar/images/combined_v9.gif) 0 -50px;
 }
 
 .cc-title {
@@ -488,12 +482,12 @@ html>body .goog-inline-block {
 
 .navBack {
 	background-position:-148px -17px;
-	background-image:url(//calendar.google.com/googlecalendar/images/combined_v12.gif);
+	background-image:url(//calendar.google.com/googlecalendar/images/combined_v9.gif);
 }
 
 .navForward {
 	background-position:-148px 0;
-	background-image:url(//calendar.google.com/googlecalendar/images/combined_v12.gif);
+	background-image:url(//calendar.google.com/googlecalendar/images/combined_v9.gif);
 }
 
 .rtl .navBack {
@@ -502,13 +496,6 @@ html>body .goog-inline-block {
 
 .rtl .navForward {
 	background-position:-148px -17px;
-}
-
-.rm-remove {
-	background-image:url(//calendar.google.com/googlecalendar/images/combined_v12.gif);
-	background-position:-65px -50px;
-	width:10px;
-	height:10px;
 }
 
 .view-tab {
@@ -622,7 +609,7 @@ html>body .goog-inline-block {
 	height:13px;
 	cursor:pointer;
 	position:absolute;
-	background:url(//calendar.google.com/googlecalendar/images/combined_v12.gif) 0 -50px;
+	background:url(//calendar.google.com/googlecalendar/images/combined_v9.gif) 0 -50px;
 }
 
 .bubble-top, .bubble-bottom {
@@ -1102,7 +1089,7 @@ img.agenda-web-content {
 	font-weight:normal;
 	color:#20c;
 	padding:2px 4px;
-	margin-left:3px;
+	margin-left:4px;
 	white-space:nowrap;
 }
 
@@ -1188,16 +1175,16 @@ img.agenda-web-content {
 }
 
 .tg-time-pri, .tg-time-sec {
-	border-bottom:1px solid #ddd;
+	border-bottom:1px Solid #ddd;
 	padding-right:2px;
 }
 
 .tg-time-sec {
-	border-bottom:1px solid #ddd;
+	border-bottom:1px Solid #ddd;
 }
 
 .tg-timesnotlast {
-	border-right:1px solid #ddd;
+	border-right:1px Solid #ddd;
 }
 
 .tg-col {
@@ -1208,11 +1195,6 @@ img.agenda-web-content {
 .tg-col-overlaywrapper {
 	position:relative;
 	height:0;
-}
-
-.tg-gutter {
-	position:relative;
-	margin-right:10px;
 }
 
 .tg-col-eventwrapper {
@@ -1271,7 +1253,7 @@ img.agenda-web-content {
 	background-position:-60px -68px;
 	width:5px;
 	height:9px;
-	background-image:url(//calendar.google.com/googlecalendar/images/combined_v12.gif);
+	background-image:url(//calendar.google.com/googlecalendar/images/combined_v9.gif);
 }
 
 .rtl .tg-nowptr {
@@ -1312,7 +1294,7 @@ img.agenda-web-content {
 	width:15px;
 	height:13px;
 	vertical-align:center;
-	background:url(//calendar.google.com/googlecalendar/images/combined_v12.gif) no-repeat;
+	background:url(//calendar.google.com/googlecalendar/images/combined_v9.gif) no-repeat;
 }
 
 .wk-sarr-no {
@@ -1353,7 +1335,7 @@ img.agenda-web-content {
 	width:11px;
 	height:11px;
 	overflow:hidden;
-	background-image:url(//calendar.google.com/googlecalendar/images/combined_v12.gif);
+	background-image:url(//calendar.google.com/googlecalendar/images/combined_v9.gif);
 	background-position:-37px -64px;
 }
 
@@ -1363,12 +1345,6 @@ img.agenda-web-content {
 
 .rtl .goog-zippy-collapsed .wk-zip {
 	background-position:-49px -67px;
-}
-
-.wk-promo {
-	overflow:hidden;
-	width:100%;
-	white-space:normal;
 }
 
 .mv-container {
@@ -1398,15 +1374,6 @@ img.agenda-web-content {
 
 .mv-dayname {
 	font-weight:normal;
-}
-
-.mv-promo {
-	overflow:hidden;
-	padding-top:14px;
-	width:100%;
-	top:14px;
-	white-space:normal;
-	zoom:1;
 }
 
 .mv-event-container {
@@ -1465,12 +1432,11 @@ img.agenda-web-content {
 	text-align:center;
 	padding:2px;
 	font-family:Verdana, sans-serif;
-	font-size:11px;
-	color:#000;
-	font-weight:normal;
+	font-size:85%;
 }
 
 .dp-heading {
+	color:#20c;
 	font-weight:bold;
 	vertical-align:middle;
 }
@@ -1481,14 +1447,12 @@ img.agenda-web-content {
 	text-align:center;
 	white-space:nowrap;
 	font-size:100%;
-	color:#20c;
 }
 
 .dp-prev, .dp-next {
 	font-size:100%;
 	padding-bottom:6px;
 	cursor:pointer;
-	color:#20c;
 }
 
 .dp-prev {
@@ -1504,7 +1468,6 @@ img.agenda-web-content {
 }
 
 .dp-weekday-selected {
-	color:#000;
 	background:#ace;
 }
 
@@ -1513,7 +1476,6 @@ img.agenda-web-content {
 }
 
 .dp-weekend-selected {
-	color:#000;
 	background:#9bd;
 }
 
@@ -1526,15 +1488,15 @@ img.agenda-web-content {
 }
 
 .dp-day-left {
-	border-left:1px solid #a2bbdd;
+	border-left:1px #a2bbdd solid;
 }
 
 .dp-day-right {
-	border-right:1px solid #a2bbdd solid;
+	border-right:1px #a2bbdd solid;
 }
 
 .dp-dayh {
-	border-bottom:1px solid #a2bbdd solid;
+	border-bottom:1px #a2bbdd solid;
 }
 
 .dp-today, .dp-today-selected {
@@ -1555,110 +1517,7 @@ img.agenda-web-content {
 
 .dp-onhover {
 	background-color:#def;
-	border-color:#def;
 	color:black;
-}
-
-.pb-frame {
-	font-size:13px;
-	border:1px solid #ccc;
-	padding:4px 0 6px 6px;
-	background-color:#ffc;
-	margin-bottom:8px;
-}
-
-.pb-frame-main {
-	font-size:13px;
-	border:1px solid #ccc;
-	padding:4px 0 6px 6px;
-	background-color:#ffc;
-}
-
-.pb-new {
-	color:#9f0f0c;
-	font-size:80%;
-}
-
-.pb-new-main {
-	color:#9f0f0c;
-}
-
-.pb-link, .pb-link a {
-	color:#112abb;
-	text-decoration:underline;
-	cursor:pointer;
-}
-
-#pb-link-invite {
-	font-weight:bold;
-}
-
-.pb-invite-title {
-	font-weight:bold;
-}
-
-.pb-invite-icon {
-	position:relative;
-	top:-1em;
-	right:6px;
-}
-
-.pb-invite-buttons {
-	text-align:center;
-	margin:2px;
-}
-
-.pb-invite-buttons input {
-	font-size:13px;
-	margin-left:4px;
-	margin-bottom:4px;
-}
-
-.pb-invite-comment {
-	font-size:85%;
-}
-
-.pb-title-bar {
-	position:relative;
-}
-
-.pb-active-title {
-	top:0;
-	left:16px;
-	color:#112abb;
-	text-decoration:underline;
-	position:absolute;
-	font-weight:bold;
-	cursor:pointer;
-}
-
-.pb-active-links {
-	position:absolute;
-	top:0;
-	right:8px;
-}
-
-#pb-active-feedback {
-	font-weight:bold;
-}
-
-.pb-active-content {
-	margin-top:8px;
-	margin-left:12px;
-}
-
-.pb-zip {
-	position:absolute;
-	height:14px;
-	width:14px;
-}
-
-.pb-expanded {
-	background-image:url(images/zip-expanded.png);
-}
-
-.pb-collapsed {
-	background-image:url(images/zip-collapsed.png);
 }
 
 

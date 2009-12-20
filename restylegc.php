@@ -47,6 +47,9 @@
  *   03 July     2009 - Fixed bug to remove width style from bubble
  *   05 July     2009 - Rebranded to RESTYLEgc
  *   16 August   2009 - Updated regex in restylegc-js.php
+ *   19 December 2009 - Removed MyGoogleCal references
+ *                      Updated Dojo version
+ *                      Archived additional .js and .css files
  *                      
  *   
  * ACKNOWLEDGMENTS:
@@ -131,15 +134,15 @@ $buffer = preg_replace($pattern, $replacement, $buffer);
 
 // Add a hook to the window onload function
 $pattern = '/}\);}<\/script>/';
-$replacement = '}); myGoogleCal();}</script>';
+$replacement = '}); restylegc();}</script>';
 $buffer = preg_replace($pattern, $replacement, $buffer);
 
 // Use DHTML to modify the DOM after the calendar loads
 $pattern = '/(<\/head>)/';
-$replacement = <<<MGC
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.3.1/dojo/dojo.xd.js"></script>
+$replacement = <<<RGC
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.4.0/dojo/dojo.xd.js"></script>
 <script type="text/javascript">
-function myGoogleCal() {
+function restylegc() {
     // remove inline style from body so background-color can be set using the stylesheet
     dojo.removeAttr(dojo.body(),'style');
 
@@ -154,7 +157,7 @@ function myGoogleCal() {
 }
 </script>
 </head>
-MGC;
+RGC;
 $buffer = preg_replace($pattern, $replacement, $buffer);
 
 // display the calendar
