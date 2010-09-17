@@ -176,20 +176,17 @@ $buffer = preg_replace($pattern, $replacement, $buffer);
 // Use DHTML to modify the DOM after the calendar loads
 $pattern = '/(<\/head>)/';
 $replacement = <<<RGC
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.4.0/dojo/dojo.xd.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript">
 function restylegc() {
     // remove inline style from body so background-color can be set using the stylesheet
-    dojo.removeAttr(dojo.body(),'style');
+    $('body').removeAttr('style');
 
     // iterate over each bubble and remove the width property from the style attribute
     // so that the width can be set using the stylesheet
-    dojo.query('.bubble').forEach(function(node){
-        dojo.attr(node, {style:{'width': ''}});
+    $('.bubble').each(function() {
+        $(this).css('width', '');
     });
-
-    // see Dojo documentation for other ways to edit DOM
-    // http://dojotoolkit.org/
 }
 </script>
 </head>
