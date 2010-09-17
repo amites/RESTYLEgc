@@ -1,5 +1,5 @@
 <?php
-/*******************************************************************************
+/***********************************************i********************************
  * FILE: restylegc.php
  *
  * DESCRIPTION:
@@ -12,7 +12,7 @@
  *  where user@domain.tld is a valid Google Calendar account.
  *
  * VALID QUERY STRING PARAMETERS:
- *    title:         any valid url encoded string 
+ *    title:         any valid url encoded string
  *                   if not present, takes title from first src
  *    showTitle:     0 or 1 (default)
  *    showNav:       0 or 1 (default)
@@ -22,16 +22,16 @@
  *    mode:          WEEK, MONTH (default), AGENDA
  *    height:        a positive integer (should be same height as iframe)
  *    wkst:          1 (Sun; default), 2 (Mon), or 7 (Sat)
- *    hl:            en, zh_TW, zh_CN, da, nl, en_GB, fi, fr, de, it, ja, ko, 
+ *    hl:            en, zh_TW, zh_CN, da, nl, en_GB, fi, fr, de, it, ja, ko,
  *                   no, pl, pt_BR, ru, es, sv, tr
  *                   if not present, takes language from first src
  *    bgcolor:       url encoded hex color value, #FFFFFF (default)
  *    src:           url encoded Google Calendar account (required)
- *    color:         url encoded hex color value     
+ *    color:         url encoded hex color value
  *                   must immediately follow src
- *    
- *    The query string can contain multiple src/color pairs.  It's recommended 
- *    to have these pairs of query string parameters at the end of the query 
+ *
+ *    The query string can contain multiple src/color pairs.  It's recommended
+ *    to have these pairs of query string parameters at the end of the query
  *    string.
  *
  * HISTORY:
@@ -50,19 +50,19 @@
  *   19 December 2009 - Removed MyGoogleCal references
  *                      Updated Dojo version
  *                      Archived additional .js and .css files
- *                      
- *   
+ *
+ *
  * ACKNOWLEDGMENTS:
  *   Michael McCall (http://www.castlemccall.com/) for pointing out "htmlembed"
  *   Mike (http://mikahn.com/) for the link to the online CSS formatter
- *   TechTriad.com (http://techtriad.com/) for requesting and funding the 
+ *   TechTriad.com (http://techtriad.com/) for requesting and funding the
  *       Javascript code to edit CSS properties and for selflessly letting the
  *       code be published for everyone's use and benefit.
- *   
+ *
  *
  * MIT LICENSE:
  * Copyright (c) 2009 Brian Gibson (http://www.restylegc.com/)
- * 
+ *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
  * files (the "Software"), to deal in the Software without
@@ -71,10 +71,10 @@
  * copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following
  * conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
  * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -87,13 +87,13 @@
  ******************************************************************************/
 
 /* URL for overriding stylesheet
- * The best way to create this stylesheet is to 
+ * The best way to create this stylesheet is to
  * 1) Load "http://www.google.com/calendar/embed?src=user%40domain.tld" in a
  *    browser,
  * 2) View the source (e.g., View->Page Source in Firefox),
- * 3) Copy the relative URL of the stylesheet (i.e., the href value of the 
- *    <link> tag), 
- * 4) Load the stylesheet in the browser by pasting the stylesheet URL into 
+ * 3) Copy the relative URL of the stylesheet (i.e., the href value of the
+ *    <link> tag),
+ * 4) Load the stylesheet in the browser by pasting the stylesheet URL into
  *    the address bar so that it reads similar to:
  *    "http://www.google.com/calendar/d003e2eff7c42eebf779ecbd527f1fe0embedcompiled.css"
  * 5) Save the stylesheet (e.g., File->Save Page As in Firefox)
@@ -105,14 +105,38 @@
  */
 $stylesheet = 'restylegc.css';
 
+/*
+ * Set domain to your google apps domain to use a google apps hosted calendar
+ * ex: $domain = 'mitesdesign.com';
+ */
+$domain = false;
+
 /*******************************************************************************
  * DO NOT EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING
  ******************************************************************************/
 
+// Check if a cached version already exists
+// Caching is simple and will not support multiple calendars
+// yet... if I run into the need I'll add it
+// anyone else is welcome to fork this and make it more intelligent
+$cachefile = 'cache/'.basename($_SERVER['SCRIPT_NAME']);
+$cachetime = 120 * 60; // 2 hours
+if (file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile))) {
+    include($cachefile);
+    echo "<!-- Cached ".date('jS F Y H:i', filemtime($cachefile))." -->";
+    exit;
+}
+
 // URL for the calendar
 $url = "";
 if(count($_GET) > 0) {
-  $url = "http://www.google.com/calendar/embed?" . $_SERVER['QUERY_STRING'];
+  if ($domain) {
+    $url = "http://www.google.com/calendar/hosted/$domain/embed?" . $_SERVER['QUERY_STRING'];
+  } else {
+    $url = "http://www.google.com/calendar/embed?" . $_SERVER['QUERY_STRING'];
+  }
+} else {
+  exit('No Calendar variables');
 }
 
 // Request the calendar
@@ -120,7 +144,19 @@ $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+// Added based on suggestions from troubleshooting "Moved Temporarily" page
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // follow redirects
+curl_setopt($ch, CURLOPT_MAXREDIRS, 10); // maximum number of redirects
 $buffer = curl_exec($ch);
+
+// Added based on suggestions from troubleshooting "Moved Temporarily" page
+$n = 0; //failsafe so this thing doesn't loop to infinity
+while ((strpos($buffer, 'Moved Temporarily') !== false) && ($n < 10)) {
+   $n++;
+   //re-execute the cURL request
+   $buffer = curl_exec($ch);
+}
+
 curl_close($ch);
 
 // Point stylesheet and javascript to custom versions
@@ -129,7 +165,7 @@ $replacement = '<link rel="stylesheet" type="text/css" href="' . $stylesheet . '
 $buffer = preg_replace($pattern, $replacement, $buffer);
 
 $pattern = '/src="(.*js)"/';
-$replacement = 'src="restylegc-js.php?$1"';  
+$replacement = 'src="restylegc-js.php?$1"';
 $buffer = preg_replace($pattern, $replacement, $buffer);
 
 // Add a hook to the window onload function
@@ -160,6 +196,10 @@ function restylegc() {
 RGC;
 $buffer = preg_replace($pattern, $replacement, $buffer);
 
+$fp = fopen($cachefile, 'w'); // open the cache file for writing
+fwrite($fp, $buffer); // save the contents of output buffer to the file
+fclose($fp); // close the file
+
 // display the calendar
-print $buffer;
+echo $buffer;
 ?>
